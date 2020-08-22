@@ -223,9 +223,9 @@ async function _getOAuthAccessToken (code, provider, callback) {
 
   this._request(
     provider.getTokenMethod || 'POST',
-    url,
+    provider.getTokenMethod=='GET'?url + '?' + postData:url,
     headers,
-    postData,
+    provider.getTokenMethod=='GET'?null:postData,
     null,
     (error, data, response) => {
       if (error) {
