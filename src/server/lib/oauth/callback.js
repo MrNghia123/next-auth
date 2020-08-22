@@ -233,6 +233,7 @@ async function _getOAuthAccessToken (code, provider, callback) {
         return callback(error)
       }
 
+      console.log('token data', data)
       let results
       try {
         // As of http://tools.ietf.org/html/draft-ietf-oauth-v2-07
@@ -244,6 +245,7 @@ async function _getOAuthAccessToken (code, provider, callback) {
         // Clients of these services suffer a minor performance cost.
         results = querystring.parse(data)
       }
+      console.log('results', results)
       const accessToken = results.access_token
       const refreshToken = results.refresh_token
       callback(null, accessToken, refreshToken || code, results)

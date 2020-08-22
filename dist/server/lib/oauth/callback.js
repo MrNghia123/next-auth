@@ -255,6 +255,7 @@ function _getOAuthAccessToken2() {
         return callback(error);
       }
 
+      console.log('token data', data);
       var results;
 
       try {
@@ -263,6 +264,7 @@ function _getOAuthAccessToken2() {
         results = _querystring.default.parse(data);
       }
 
+      console.log('results', results);
       var accessToken = results.access_token;
       var refreshToken = results.refresh_token;
       callback(null, accessToken, refreshToken || code, results);
