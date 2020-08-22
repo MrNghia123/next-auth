@@ -222,7 +222,7 @@ async function _getOAuthAccessToken (code, provider, callback) {
   const postData = querystring.stringify(params)
 
   this._request(
-    'POST',
+    provider.getTokenMethod || 'POST',
     url,
     headers,
     postData,
@@ -246,7 +246,7 @@ async function _getOAuthAccessToken (code, provider, callback) {
       }
       const accessToken = results.access_token
       const refreshToken = results.refresh_token
-      callback(null, accessToken, refreshToken, results)
+      callback(null, accessToken, refreshToken || code, results)
     }
   )
 }
