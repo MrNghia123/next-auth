@@ -248,6 +248,11 @@ function _getOAuthAccessToken2() {
 
     var postData = _querystring.default.stringify(params);
 
+    console.log({
+      url,
+      postData
+    }, provider.getTokenMethod);
+
     this._request(provider.getTokenMethod || 'POST', provider.getTokenMethod == 'GET' ? url + '?' + postData : url, headers, provider.getTokenMethod == 'GET' ? null : postData, null, (error, data, response) => {
       if (error) {
         _logger.default.error('OAUTH_GET_ACCESS_TOKEN_ERROR', error, data, response);

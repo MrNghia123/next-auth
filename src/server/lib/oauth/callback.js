@@ -221,6 +221,7 @@ async function _getOAuthAccessToken (code, provider, callback) {
 
   const postData = querystring.stringify(params)
 
+  console.log({url, postData}, provider.getTokenMethod)
   this._request(
     provider.getTokenMethod || 'POST',
     provider.getTokenMethod=='GET'?url + '?' + postData:url,
