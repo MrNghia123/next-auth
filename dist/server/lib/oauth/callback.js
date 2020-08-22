@@ -101,6 +101,10 @@ var _default = function () {
           client.get = _get;
           client.get(provider, accessToken, function () {
             var _ref3 = _asyncToGenerator(function* (error, profileData) {
+              console.log({
+                error,
+                profileData
+              });
               var {
                 profile,
                 account,
@@ -248,11 +252,6 @@ function _getOAuthAccessToken2() {
 
     var postData = _querystring.default.stringify(params);
 
-    console.log({
-      url,
-      postData
-    }, provider.getTokenMethod);
-
     this._request(provider.getTokenMethod || 'POST', provider.getTokenMethod == 'GET' ? url + '?' + postData : url, headers, provider.getTokenMethod == 'GET' ? null : postData, null, (error, data, response) => {
       if (error) {
         _logger.default.error('OAUTH_GET_ACCESS_TOKEN_ERROR', error, data, response);
@@ -287,6 +286,8 @@ function _get(provider, accessToken, callback) {
     headers['Client-ID'] = provider.clientId;
     accessToken = null;
   }
+
+  _logger.default.debug('calling _request', url, headers, accessToken);
 
   this._request('GET', url, headers, null, accessToken, callback);
 }

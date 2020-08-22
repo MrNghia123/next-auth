@@ -94,6 +94,7 @@ export default async (req, provider, csrfToken, callback) => {
             provider,
             accessToken,
             async (error, profileData) => {
+              console.log({error, profileData})
               const { profile, account, OAuthProfile } = await _getProfile(error, profileData, accessToken, refreshToken, provider)
               callback(error, profile, account, OAuthProfile)
             }
@@ -221,7 +222,6 @@ async function _getOAuthAccessToken (code, provider, callback) {
 
   const postData = querystring.stringify(params)
 
-  console.log({url, postData}, provider.getTokenMethod)
   this._request(
     provider.getTokenMethod || 'POST',
     provider.getTokenMethod=='GET'?url + '?' + postData:url,
@@ -266,7 +266,7 @@ function _get (provider, accessToken, callback) {
     headers['Client-ID'] = provider.clientId
     accessToken = null
   }
-
+  logger.debug('calling _request', url, headers, accessToken)
   this._request('GET', url, headers, null, accessToken, callback)
 }
 
