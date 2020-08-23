@@ -94,7 +94,6 @@ export default async (req, provider, csrfToken, callback) => {
             provider,
             accessToken,
             async (error, profileData) => {
-              console.log({error, profileData})
               const { profile, account, OAuthProfile } = await _getProfile(error, profileData, accessToken, refreshToken, provider)
               callback(error, profile, account, OAuthProfile)
             }
@@ -234,7 +233,6 @@ async function _getOAuthAccessToken (code, provider, callback) {
         return callback(error)
       }
 
-      console.log('token data', data)
       let results
       try {
         // As of http://tools.ietf.org/html/draft-ietf-oauth-v2-07
@@ -246,7 +244,6 @@ async function _getOAuthAccessToken (code, provider, callback) {
         // Clients of these services suffer a minor performance cost.
         results = querystring.parse(data)
       }
-      console.log('results', results)
       const accessToken = results.access_token
       const refreshToken = results.refresh_token
       callback(null, accessToken, refreshToken || code, results)
@@ -266,7 +263,6 @@ function _get (provider, accessToken, callback) {
     headers['Client-ID'] = provider.clientId
     accessToken = null
   }
-  logger.debug('calling _request', url, headers, accessToken)
   this._request('GET', url, headers, null, accessToken, callback)
 }
 

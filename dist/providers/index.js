@@ -49,6 +49,8 @@ var _twitter = _interopRequireDefault(require("./twitter"));
 
 var _yandex = _interopRequireDefault(require("./yandex"));
 
+var _zalo = _interopRequireDefault(require("./zalo"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _default = {
@@ -73,6 +75,7 @@ var _default = {
   Spotify: _spotify.default,
   Twitter: _twitter.default,
   Twitch: _twitch.default,
-  Yandex: _yandex.default
+  Yandex: _yandex.default,
+  Zalo: _zalo.default
 };
 exports.default = _default;

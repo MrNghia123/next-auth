@@ -20,6 +20,7 @@ import Spotify from './spotify'
 import Twitch from './twitch'
 import Twitter from './twitter'
 import Yandex from './yandex'
+import Zalo from './zalo'
 
 export default {
   Auth0,
@@ -43,5 +44,6 @@ export default {
   Spotify,
   Twitter,
   Twitch,
-  Yandex
+  Yandex,
+  Zalo
 }

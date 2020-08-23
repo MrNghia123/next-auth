@@ -101,10 +101,6 @@ var _default = function () {
           client.get = _get;
           client.get(provider, accessToken, function () {
             var _ref3 = _asyncToGenerator(function* (error, profileData) {
-              console.log({
-                error,
-                profileData
-              });
               var {
                 profile,
                 account,
@@ -259,7 +255,6 @@ function _getOAuthAccessToken2() {
         return callback(error);
       }
 
-      console.log('token data', data);
       var results;
 
       try {
@@ -268,7 +263,6 @@ function _getOAuthAccessToken2() {
         results = _querystring.default.parse(data);
       }
 
-      console.log('results', results);
       var accessToken = results.access_token;
       var refreshToken = results.refresh_token;
       callback(null, accessToken, refreshToken || code, results);
@@ -286,8 +280,6 @@ function _get(provider, accessToken, callback) {
     headers['Client-ID'] = provider.clientId;
     accessToken = null;
   }
-
-  _logger.default.debug('calling _request', url, headers, accessToken);
 
   this._request('GET', url, headers, null, accessToken, callback);
 }
