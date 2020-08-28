@@ -379,11 +379,14 @@ var _fetchData = function () {
 
 var _apiBaseUrl = () => {
   if (typeof window === 'undefined') {
+    var baseUrl = (0, _parseUrl.default)(process.env.NEXTAUTH_URL || process.env.VERCEL_URL).baseUrl,
+        basePath = (0, _parseUrl.default)(process.env.NEXTAUTH_URL).basePath;
+
     if (!process.env.NEXTAUTH_URL) {
       _logger.default.warn('NEXTAUTH_URL', 'NEXTAUTH_URL environment variable not set');
     }
 
-    return "".concat(__NEXTAUTH.baseUrl).concat(__NEXTAUTH.basePath);
+    return "".concat(baseUrl).concat(basePath);
   } else {
     return __NEXTAUTH.basePath;
   }
