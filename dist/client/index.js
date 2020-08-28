@@ -379,6 +379,7 @@ var _fetchData = function () {
 
 var _apiBaseUrl = () => {
   if (typeof window === 'undefined') {
+    console.log('calling from server side');
     var baseUrl = (0, _parseUrl.default)(process.env.NEXTAUTH_URL || process.env.VERCEL_URL).baseUrl,
         basePath = (0, _parseUrl.default)(process.env.NEXTAUTH_URL).basePath;
 
@@ -388,6 +389,7 @@ var _apiBaseUrl = () => {
 
     return "".concat(baseUrl).concat(basePath);
   } else {
+    console.log('calling from client side');
     return __NEXTAUTH.basePath;
   }
 };

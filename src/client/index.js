@@ -297,6 +297,7 @@ const _fetchData = async (url, options = {}) => {
 
 const _apiBaseUrl = () => {
   if (typeof window === 'undefined') {
+    console.log('calling from server side')
     const baseUrl = parseUrl(process.env.NEXTAUTH_URL || process.env.VERCEL_URL).baseUrl,
       basePath = parseUrl(process.env.NEXTAUTH_URL).basePath
   
@@ -307,6 +308,7 @@ const _apiBaseUrl = () => {
     return `${baseUrl}${basePath}`
   } else {
     // Return relative path when called client side
+    console.log('calling from client side')
     return __NEXTAUTH.basePath
   }
 }
