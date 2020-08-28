@@ -35,10 +35,6 @@ var __NEXTAUTH = {
   _clientId: Math.random().toString(36).substring(2) + Date.now().toString(36),
   _getSession: () => {}
 };
-console.log({
-  NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-  __NEXTAUTH
-});
 
 if (typeof window !== 'undefined') {
   if (__NEXTAUTH._eventListenersAdded === false) {
@@ -378,20 +374,7 @@ var _fetchData = function () {
 }();
 
 var _apiBaseUrl = () => {
-  if (typeof window === 'undefined') {
-    console.log('calling from server side');
-    var baseUrl = (0, _parseUrl.default)(process.env.NEXTAUTH_URL || process.env.VERCEL_URL).baseUrl,
-        basePath = (0, _parseUrl.default)(process.env.NEXTAUTH_URL).basePath;
-
-    if (!process.env.NEXTAUTH_URL) {
-      _logger.default.warn('NEXTAUTH_URL', 'NEXTAUTH_URL environment variable not set');
-    }
-
-    return "".concat(baseUrl).concat(basePath);
-  } else {
-    console.log('calling from client side');
-    return __NEXTAUTH.basePath;
-  }
+  return "".concat(__NEXTAUTH.baseUrl).concat(__NEXTAUTH.basePath);
 };
 
 var _encodedForm = formData => {

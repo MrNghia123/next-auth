@@ -38,7 +38,6 @@ const __NEXTAUTH = {
   _getSession: () => {}
 }
 
-console.log({NEXTAUTH_URL:process.env.NEXTAUTH_URL, __NEXTAUTH})
 // Add event listners on load
 if (typeof window !== 'undefined') {
   if (__NEXTAUTH._eventListenersAdded === false) {
@@ -296,21 +295,16 @@ const _fetchData = async (url, options = {}) => {
 }
 
 const _apiBaseUrl = () => {
-  if (typeof window === 'undefined') {
-    console.log('calling from server side')
-    const baseUrl = parseUrl(process.env.NEXTAUTH_URL || process.env.VERCEL_URL).baseUrl,
-      basePath = parseUrl(process.env.NEXTAUTH_URL).basePath
-  
+  // if (typeof window === 'undefined') {
     // NEXTAUTH_URL should always be set explicitly to support server side calls - log warning if not set
-    if (!process.env.NEXTAUTH_URL) { logger.warn('NEXTAUTH_URL', 'NEXTAUTH_URL environment variable not set') }
+    // if (!process.env.NEXTAUTH_URL) { logger.warn('NEXTAUTH_URL', 'NEXTAUTH_URL environment variable not set') }
 
     // Return absolute path when called server side
-    return `${baseUrl}${basePath}`
-  } else {
+    return `${__NEXTAUTH.baseUrl}${__NEXTAUTH.basePath}`
+  // } else {
     // Return relative path when called client side
-    console.log('calling from client side')
-    return __NEXTAUTH.basePath
-  }
+  //   return __NEXTAUTH.basePath
+  // }
 }
 
 const _encodedForm = (formData) => {
