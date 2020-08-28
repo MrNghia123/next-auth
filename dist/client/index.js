@@ -35,6 +35,10 @@ var __NEXTAUTH = {
   _clientId: Math.random().toString(36).substring(2) + Date.now().toString(36),
   _getSession: () => {}
 };
+console.log({
+  NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+  __NEXTAUTH
+});
 
 if (typeof window !== 'undefined') {
   if (__NEXTAUTH._eventListenersAdded === false) {

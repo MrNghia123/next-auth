@@ -38,6 +38,7 @@ const __NEXTAUTH = {
   _getSession: () => {}
 }
 
+console.log({NEXTAUTH_URL:process.env.NEXTAUTH_URL, __NEXTAUTH})
 // Add event listners on load
 if (typeof window !== 'undefined') {
   if (__NEXTAUTH._eventListenersAdded === false) {
