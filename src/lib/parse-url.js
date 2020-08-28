@@ -7,6 +7,7 @@ export default (url) => {
   const defaultHost = 'http://localhost:3000'
   const defaultPath = '/api/auth'
 
+  console.log('parseUrl', url)
   if (!url) { url = `${defaultHost}${defaultPath}` }
 
   // Default to HTTPS if no protocol explictly specified
@@ -19,6 +20,8 @@ export default (url) => {
   const [_host, ..._path] = url.split('/')
   const baseUrl = _host ? `${protocol}://${_host}` : defaultHost
   const basePath = _path.length > 0 ? `/${_path.join('/')}` : defaultPath
+
+  console.log({_host, baseUrl, basePath})
 
   return {
     baseUrl,

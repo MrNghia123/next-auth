@@ -8,6 +8,7 @@ exports.default = void 0;
 var _default = url => {
   var defaultHost = 'http://localhost:3000';
   var defaultPath = '/api/auth';
+  console.log('parseUrl', url);
 
   if (!url) {
     url = "".concat(defaultHost).concat(defaultPath);
@@ -18,6 +19,11 @@ var _default = url => {
   var [_host, ..._path] = url.split('/');
   var baseUrl = _host ? "".concat(protocol, "://").concat(_host) : defaultHost;
   var basePath = _path.length > 0 ? "/".concat(_path.join('/')) : defaultPath;
+  console.log({
+    _host,
+    baseUrl,
+    basePath
+  });
   return {
     baseUrl,
     basePath
